@@ -1,0 +1,59 @@
+package com.component.preject.common.manage;
+
+import android.app.Activity;
+
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * @ProjectName: NewComponent
+ * @Package: com.component.preject.common.manage
+ * @ClassName: ActivityManage
+ * @Author: xzg
+ * @CreateDate: 2019-08-28 9:43
+ * @UpdateUser: 更新者
+ * @UpdateDate: 2019-08-28 9:43
+ * @UpdateRemark: 更新说明
+ * @Version: 1.0
+ * @description: （管理所有的Activity）
+ */
+public class ActivityManage {
+
+    /**
+     *  //保存所有创建的Activity
+     */
+    private Set<Activity> allActivities = new HashSet<>();
+
+    /**
+     * 添加Activity到管理器
+     *
+     * @param activity activity
+     */
+    public void addActivity(Activity activity) {
+        if (activity != null) {
+            allActivities.add(activity);
+        }
+    }
+
+
+    /**
+     * 从管理器移除Activity
+     *
+     * @param activity activity
+     */
+    public void removeActivity(Activity activity) {
+        if (activity != null) {
+            allActivities.remove(activity);
+        }
+    }
+
+    /**
+     * 关闭所有Activity
+     */
+    public void finishAll() {
+        for (Activity activity : allActivities) {
+            activity.finish();
+        }
+
+    }
+}

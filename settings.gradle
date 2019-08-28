@@ -1,2 +1,11 @@
-include ':app'
+include ':app',
+        'component:module_home',
+        'component:module_common',
+
+
+
+        'modules:fragmentation_core',
+        'modules:fragmentation_swipeback',
+        'modules:fragmentation',
+        'modules:eventbus_activity_scope'
 rootProject.name='NewComponent'

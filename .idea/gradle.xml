@@ -9,6 +9,14 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/component" />
+            <option value="$PROJECT_DIR$/component/module_common" />
+            <option value="$PROJECT_DIR$/component/module_home" />
+            <option value="$PROJECT_DIR$/modules" />
+            <option value="$PROJECT_DIR$/modules/eventbus_activity_scope" />
+            <option value="$PROJECT_DIR$/modules/fragmentation" />
+            <option value="$PROJECT_DIR$/modules/fragmentation_core" />
+            <option value="$PROJECT_DIR$/modules/fragmentation_swipeback" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
