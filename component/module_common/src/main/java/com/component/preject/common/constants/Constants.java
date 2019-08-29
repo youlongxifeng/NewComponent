@@ -28,6 +28,19 @@ public interface Constants {
      * 项目
      */
     String ROUTER_PROJECT = "/home/ProjectActivity";
+    /**
+     * 公众号 OfficialAccountsPageFragment
+     */
+    String ROUTER_OFFICIALACCOUNTSPAGE = "/home/OfficialAccountsPageFragment";
+    /**
+     * 知识体系
+     * KnowledgeHierarchyPageFragment
+     */
+    String ROUTER_KNOWLEDGEHIERARCHYPAGE= "/home/KnowledgeHierarchyPageFragment";
+    /**
+     * 项目列表 ProjectFragment
+     */
+    String ROUTER_PROJECTFRAGMENT= "/home/ProjectFragment";
 
 
 

@@ -7,5 +7,6 @@ include ':app',
         'modules:fragmentation_core',
         'modules:fragmentation_swipeback',
         'modules:fragmentation',
-        'modules:eventbus_activity_scope'
+        'modules:eventbus_activity_scope',
+        'modules:BaseRecyclerViewAdapterHelper'
 rootProject.name='NewComponent'

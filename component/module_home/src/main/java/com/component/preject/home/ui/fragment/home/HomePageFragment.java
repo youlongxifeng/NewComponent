@@ -1,22 +1,18 @@
-package com.component.preject.home.ui.home;
+package com.component.preject.home.ui.fragment.home;
 
-import android.annotation.SuppressLint;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.facade.callback.NavCallback;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.component.preject.common.base.fragment.BaseFragment;
+import com.component.preject.common.base.fragment.BaseMvpFragment;
+import com.component.preject.common.base.mvp.BasePresenter;
 import com.component.preject.common.constants.Constants;
 import com.component.preject.common.utils.LogUtils;
 import com.component.preject.home.R;
@@ -27,7 +23,7 @@ import butterknife.OnClick;
 
 /**
  * @ProjectName: NewComponent
- * @Package: com.component.preject.home.ui.home
+ * @Package: com.component.preject.home.ui.fragment.home
  * @ClassName: HomePageFragment
  * @Author: xzg
  * @CreateDate: 2019-08-27 16:30
@@ -38,10 +34,14 @@ import butterknife.OnClick;
  * @description: （java类作用描述）
  */
 @Route(path = Constants.ROUTER_HOME)
-public class HomePageFragment extends BaseFragment {
+public class HomePageFragment extends BaseMvpFragment {
     private final static String TAG = HomePageFragment.class.getSimpleName();
     @BindView(R2.id.tv_home_value)
     TextView mHome;
+    @BindView(R2.id.rc_recovery_box)
+    RecyclerView mRecyclerView;
+    @BindView(R2.id.swipe_recovery_box)
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     protected int getLayout() {
@@ -98,5 +98,10 @@ public class HomePageFragment extends BaseFragment {
                 Log.d("ARouter", "被拦截了");
             }
         });
+    }
+
+    @Override
+    protected BasePresenter createPresenter() {
+        return null;
     }
 }

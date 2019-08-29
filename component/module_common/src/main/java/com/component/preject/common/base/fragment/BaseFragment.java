@@ -6,10 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import me.yokeyword.fragmentation.SupportFragment;
 
 /**
  * @ProjectName: NewComponent
@@ -23,7 +23,7 @@ import butterknife.Unbinder;
  * @Version: 1.0
  * @description: （java类作用描述）
  */
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment extends SupportFragment {
     Unbinder mUnbinder;
     /**
      * 判断当前页面是否在顶层

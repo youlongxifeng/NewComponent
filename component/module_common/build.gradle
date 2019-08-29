@@ -36,6 +36,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation rootProject.ext.dependencies["androidx-appcompat"]
+    api 'androidx.recyclerview:recyclerview:1.0.0'
+    api 'com.google.android.material:material:1.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
@@ -52,6 +54,7 @@ dependencies {
     api 'com.squareup.retrofit2:retrofit:2.6.1'
     api 'com.squareup.retrofit2:converter-gson:2.6.1'
     api 'com.squareup.retrofit2:adapter-rxjava2:2.6.1'
+    api 'com.squareup.retrofit2:converter-scalars:2.6.1'
     api 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
 
     //okhttp
@@ -59,6 +62,9 @@ dependencies {
     api 'com.squareup.okhttp3:logging-interceptor:3.10.0'
     api 'com.squareup.okio:okio:2.4.0'
 
+    //图片加载
+   // api 'com.github.bumptech.glide:glide:4.9.0'
+   // annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 
     //引入ButterKnife View注入框架
     implementation "com.jakewharton:butterknife:10.1.0"
@@ -68,9 +74,12 @@ dependencies {
     implementation 'com.orhanobut:logger:2.2.0'
 
 
+
     api project(path: ':modules:fragmentation_core')
     api project(path: ':modules:fragmentation_swipeback')
     api project(path: ':modules:fragmentation')
     api project(path: ':modules:eventbus_activity_scope')
+    //万能适配器
+    api project(path: ':modules:BaseRecyclerViewAdapterHelper')
 
 }

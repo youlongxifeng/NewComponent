@@ -27,12 +27,10 @@ import com.component.preject.common.utils.ARouterUtils;
 import com.component.preject.common.utils.LogUtils;
 import com.component.preject.common.utils.StatusBarUtil;
 import com.component.preject.home.fragment.ProjectFragment;
-import com.component.preject.home.ui.home.HomePageFragment;
 import com.component.preject.home.utils.NavHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-
 
 import butterknife.BindView;
 
@@ -91,18 +89,21 @@ public class MainActivity extends BaseActivity implements
         initView();
     }
     Fragment HomePageFragment = ARouterUtils.getFragment(Constants.ROUTER_HOME);
+    Fragment OfficialAccountsPageFragment = ARouterUtils.getFragment(Constants.ROUTER_OFFICIALACCOUNTSPAGE);
+   // Fragment KnowledgeHierarchyPageFragment=ARouterUtils.getFragment(Constants.ROUTER_KNOWLEDGEHIERARCHYPAGE);
+    Fragment ProjectFragment=ARouterUtils.getFragment(Constants.ROUTER_PROJECTFRAGMENT);
     Fragment fragment = ARouterUtils.getFragment(Constants.ROUTER_HOME);
     private void initFragment() {
          LogUtils.i(TAG, "HomePageFragment:" + HomePageFragment);
         LogUtils.i(TAG, "fragment:" + fragment);
 
         mNavHelper = new NavHelper<String>(this, R.id.page_fragment_container, getSupportFragmentManager(), this)
-                .add(R.id.tab_main, new NavHelper.Tab<String>(HomePageFragment.class, getString(R.string.page_home), Constants.TAG_HOME))
-                .add(R.id.nav_home, new NavHelper.Tab<String>(ProjectFragment.class, getString(R.string.page_home), Constants.TAG_HOME))
-                .add(R.id.tab_knowledge_hierarchy, new NavHelper.Tab<String>(ProjectFragment.class, getString(R.string.knowledge_hierarchy), Constants.TAG_KNOWLEGER))
-                .add(R.id.tab_official_accounts, new NavHelper.Tab<String>(ProjectFragment.class, getString(R.string.official_accounts), Constants.TAG_OFFICIAL))
+                .add(R.id.tab_main, new NavHelper.Tab<String>(HomePageFragment.getClass(), getString(R.string.page_home), Constants.TAG_HOME))
+                .add(R.id.nav_home, new NavHelper.Tab<String>(HomePageFragment.getClass(), getString(R.string.page_home), Constants.TAG_HOME))
+                .add(R.id.tab_knowledge_hierarchy, new NavHelper.Tab<String>(HomePageFragment.getClass(), getString(R.string.knowledge_hierarchy), Constants.TAG_KNOWLEGER))
+                .add(R.id.tab_official_accounts, new NavHelper.Tab<String>(OfficialAccountsPageFragment.getClass(), getString(R.string.official_accounts), Constants.TAG_OFFICIAL))
                 .add(R.id.tab_navigation, new NavHelper.Tab<String>(ProjectFragment.class, getString(R.string.navigation), Constants.TAG_NAVIGATION))
-                .add(R.id.tab_project, new NavHelper.Tab<String>(ProjectFragment.class, getString(R.string.project), Constants.TAG_PROJECT))
+                .add(R.id.tab_project, new NavHelper.Tab<String>(ProjectFragment.getClass(), getString(R.string.project), Constants.TAG_PROJECT))
                 .add(R.id.collect_page, new NavHelper.Tab<String>(ProjectFragment.class, getString(R.string.nav_collect), Constants.TAG_COLLECTION));
 
     }
@@ -155,7 +156,7 @@ public class MainActivity extends BaseActivity implements
             /*    //收藏
                 if(!mPresenter.getLoginStatus()){
                     //是否已经登录
-                    StartDetailPage.start(this,null, Constants.PAGE_LOGIN,Constants.ACTION_LOGIN_ACTIVITY);
+                    StartDetailPage.start(this,null, HomeConstants.PAGE_LOGIN,HomeConstants.ACTION_LOGIN_ACTIVITY);
                     return false;
                 }*/
                 initPageTitle(getString(R.string.nav_collect));
@@ -239,7 +240,8 @@ public class MainActivity extends BaseActivity implements
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressedSupport() {
+        super.onBackPressedSupport();
         LogUtils.i(TAG, "onBackPressed:" + (id != R.id.nav_home));
         MenuItem menu = bottomNavigationView.getMenu().getItem(0);
         if (id != menu.getItemId()) {
@@ -251,6 +253,8 @@ public class MainActivity extends BaseActivity implements
             super.onBackPressed();
         }
     }
+
+
 
     @Override
     public void onClick(View view) {

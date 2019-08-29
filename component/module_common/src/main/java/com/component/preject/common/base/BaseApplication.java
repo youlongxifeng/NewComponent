@@ -38,6 +38,7 @@ public class BaseApplication extends Application {
      */
     private ActivityManage activityManage;
 
+
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);

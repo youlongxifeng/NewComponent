@@ -1,13 +1,13 @@
 package com.component.preject.common.base.activity;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
-
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import me.yokeyword.fragmentation.SupportActivity;
 
 /**
  * @ProjectName: NewComponent
@@ -21,13 +21,15 @@ import butterknife.Unbinder;
  * @Version: 1.0
  * @description: （java类作用描述）
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends SupportActivity {
     private Unbinder mUnbinder;
     protected BaseActivity mContext;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayout());
+        // 禁止所有的activity横屏
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         mUnbinder= ButterKnife.bind(this);
         mContext=this;
         initToolbar();
