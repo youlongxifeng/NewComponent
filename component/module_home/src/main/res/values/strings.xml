@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">module_home</string>
     <string name="no_more_data">没有更多数据了</string>
+    <string name="page_home_recommend" >最新博文</string>
+    <string name="latest_project">最新项目</string>
+    <string name="new_tag">新</string>
+    <string name="top_tag">置顶</string>
 </resources>

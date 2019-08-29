@@ -1,10 +1,9 @@
-package com.component.preject.home.ui.fragment.homesecond;
+package com.component.preject.home.ui.fragment.homefirst;
 
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -18,8 +17,9 @@ import com.component.preject.home.R;
 import com.component.preject.home.R2;
 import com.component.preject.home.bean.HomeArticleData;
 import com.component.preject.home.bean.HomeArticleListData;
+import com.component.preject.home.bean.HomePageBannerModel;
 import com.component.preject.home.constant.HomeConstants;
-import com.component.preject.home.ui.fragment.homesecond.adapter.HomeLatestProjectAdapter;
+import com.component.preject.home.ui.fragment.homefirst.adapter.HomePageAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,18 +28,19 @@ import butterknife.BindView;
 
 /**
  * @ProjectName: NewComponent
- * @Package: com.component.preject.home.ui.fragment.homesecond
- * @ClassName: HomeSecondTabFragment
+ * @Package: com.component.preject.home.ui.fragment.homefirst
+ * @ClassName: HomeFirstTabFragment
  * @Author: xzg
- * @CreateDate: 2019-08-29 13:45
+ * @CreateDate: 2019-08-29 14:57
  * @UpdateUser: 更新者
- * @UpdateDate: 2019-08-29 13:45
+ * @UpdateDate: 2019-08-29 14:57
  * @UpdateRemark: 更新说明
  * @Version: 1.0
- * @description: （项目列表子页面）
+ * @description: （首页内容）
  */
-public class HomeSecondTabFragment extends BaseMvpFragment<HomeSecondTabPresenter> implements HomeSecondTabContracte.View {
-    private final static String TAG=HomeSecondTabFragment.class.getSimpleName();
+public class HomeFirstTabFragment extends BaseMvpFragment<HomeFirstTabPresenter> implements HomePageFirstTabContract.View {
+    private final static String TAG = HomeFirstTabFragment.class.getSimpleName();
+
 
     @BindView(R2.id.rc_recovery_box)
     RecyclerView mRecyclerView;
@@ -50,30 +51,29 @@ public class HomeSecondTabFragment extends BaseMvpFragment<HomeSecondTabPresente
      * 下一页请求页数
      */
     private int mNextRequestPage = 1;
-    HomeLatestProjectAdapter mAdapter;
-    private List<HomeArticleData> datas = new ArrayList<>();
-    /**
-     *
-     * @param tabName tab name
-     * @param id 该id在获取该分类下项目时需要用到
-     * @return
-     */
-    public static Fragment newInstance(String tabName, int id) {
+
+    List<HomeArticleData> datas=new ArrayList<>();
+
+    List<HomePageBannerModel> mBannerModelList=new ArrayList<>();
+
+    private HomePageAdapter mAdapter;
+
+    public static HomeFirstTabFragment newInstance(String tabName) {
         Bundle args = new Bundle();
-        args.putString(HomeConstants.TAG_TAB_NAME,tabName);
-        args.putInt(HomeConstants.BUNDLE_PROJECT_ID,id);
-        HomeSecondTabFragment fragment = new HomeSecondTabFragment();
+        args.putString(HomeConstants.TAG_TAB_NAME, tabName);
+        HomeFirstTabFragment fragment = new HomeFirstTabFragment();
         fragment.setArguments(args);
         return fragment;
     }
+
     @Override
-    protected HomeSecondTabPresenter createPresenter() {
-        return new HomeSecondTabPresenter();
+    protected HomeFirstTabPresenter createPresenter() {
+        return new HomeFirstTabPresenter();
     }
 
     @Override
     protected int getLayout() {
-        return R.layout.fragment_home_tab_layout;
+        return R.layout.fragment_home_first_tab_layout;
     }
 
     @Override
@@ -91,7 +91,43 @@ public class HomeSecondTabFragment extends BaseMvpFragment<HomeSecondTabPresente
     @Override
     protected void initEventAndData() {
         refresh();
+        mPresenter.getHomePageBannerData();
     }
+
+
+    @Override
+    public void showHomePageBanner(  List<HomePageBannerModel> bannerModelList) {
+
+    }
+
+    @Override
+    public void showHomePageBannerFail(String errorMsg) {
+
+    }
+
+    @Override
+    public void showTopArticleList(List<HomeArticleData> homeArticleDataList) {
+
+    }
+
+    @Override
+    public void showHomeArticleList(  HomeArticleListData homeArticleListData) {
+        boolean isRefresh = mNextRequestPage == 1;
+        mSwipeRefreshLayout.setRefreshing(false);
+        //添加新的数据
+        setData(isRefresh, homeArticleListData.getDatas());
+    }
+
+    @Override
+    public void showAutoLoginSuccess() {
+
+    }
+
+    @Override
+    public void showAutoLoginFail(String errorMsg) {
+
+    }
+
     /**
      * 初始化RefreshLayout
      */
@@ -123,7 +159,7 @@ public class HomeSecondTabFragment extends BaseMvpFragment<HomeSecondTabPresente
      * 初始化适配器
      */
     private void initAdapter() {
-        mAdapter=new HomeLatestProjectAdapter(R.layout.item_project_layout,datas);
+        mAdapter=new HomePageAdapter(R.layout.item_article_cardview_layout,datas);
         mRecyclerView.setAdapter(mAdapter);
         //加载显示动画
         mAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_BOTTOM);
@@ -146,17 +182,17 @@ public class HomeSecondTabFragment extends BaseMvpFragment<HomeSecondTabPresente
      * 刷新数据
      */
     private void refresh() {
-        LogUtils.i(TAG, "refresh============mNextRequestPage=" + mNextRequestPage);
         mNextRequestPage = 1;
         mSwipeRefreshLayout.setRefreshing(true);
         //这里的作用是防止下拉刷新的时候还可以上拉加载
-        mPresenter.getHomeArticleListProjectData(mNextRequestPage);
+        mPresenter.getHomePageBannerData();
+        mPresenter.getHomeArticleListData(mNextRequestPage);
     }
     /**
      * 加载更多数据
      */
     private void loadMore() {
-        mPresenter.getHomeArticleListProjectData(mNextRequestPage);;
+        mPresenter.getHomeArticleListData(mNextRequestPage);
     }
     /**
      * 更新数据集合
@@ -187,18 +223,5 @@ public class HomeSecondTabFragment extends BaseMvpFragment<HomeSecondTabPresente
         } else {
             mAdapter.loadMoreComplete();
         }
-    }
-
-    @Override
-    public void onHomeArticleListSucceed(HomeArticleListData officialAccountsListData) {
-        boolean isRefresh = mNextRequestPage == 1;
-        mSwipeRefreshLayout.setRefreshing(false);
-        //添加新的数据
-        setData(isRefresh, officialAccountsListData.getDatas());
-    }
-
-    @Override
-    public void onHomeArticleListFail(String fail) {
-
     }
 }

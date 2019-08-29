@@ -2,10 +2,9 @@ package com.component.preject.home.ui.fragment.home;
 
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -15,8 +14,15 @@ import com.component.preject.common.base.fragment.BaseMvpFragment;
 import com.component.preject.common.base.mvp.BasePresenter;
 import com.component.preject.common.constants.Constants;
 import com.component.preject.common.utils.LogUtils;
+import com.component.preject.common.utils.ToolsUtils;
 import com.component.preject.home.R;
 import com.component.preject.home.R2;
+import com.component.preject.home.ui.fragment.homefirst.HomeFirstTabFragment;
+import com.component.preject.home.ui.fragment.homesecond.HomeSecondTabFragment;
+import com.google.android.material.tabs.TabLayout;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -36,13 +42,12 @@ import butterknife.OnClick;
 @Route(path = Constants.ROUTER_HOME)
 public class HomePageFragment extends BaseMvpFragment {
     private final static String TAG = HomePageFragment.class.getSimpleName();
-    @BindView(R2.id.tv_home_value)
-    TextView mHome;
-    @BindView(R2.id.rc_recovery_box)
-    RecyclerView mRecyclerView;
-    @BindView(R2.id.swipe_recovery_box)
-    SwipeRefreshLayout mSwipeRefreshLayout;
-
+    @BindView(R2.id.project_tab)
+    TabLayout mHomeTab;
+    @BindView(R2.id.view_pager_project)
+    ViewPager mViewPager;
+    List<String> mTitle;
+    List<Fragment> mFragments;
     @Override
     protected int getLayout() {
         return R.layout.home_page_fragment_layout;
@@ -60,14 +65,25 @@ public class HomePageFragment extends BaseMvpFragment {
 
     @Override
     protected void initEventAndData() {
-
+        mTitle = new ArrayList<>();
+        mFragments = new ArrayList<>();
+        mTitle.add(getString(R.string.page_home_recommend));
+        mTitle.add(getString(R.string.latest_project));
+        mFragments.add(HomeFirstTabFragment.newInstance(mTitle.get(0)));
+        mFragments.add(HomeSecondTabFragment.newInstance(mTitle.get(1),-1));
+        //下划线间距
+        ToolsUtils.setIndicatorWidth(mHomeTab,getResources().getDimensionPixelSize(R.dimen.dp_30));
+        // 在fragment中使用时需要传入getChildFragmentManager()作为参数
+        mViewPager.setAdapter(new HomeTabPageAdapter(getChildFragmentManager(),mTitle,mFragments));
+        //mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mEhomeTab.getTabLayout()));
+        mHomeTab.setupWithViewPager(mViewPager);
     }
 
 
-    @OnClick({R2.id.tv_home_value})
+    @OnClick({R2.id.ll_home})
     public void onClickView(View view) {
         LogUtils.i(TAG, "==========");
-        if (view.getId() == R.id.tv_home_value) {
+        if (view.getId() == R.id.ll_home) {
             routerProject();
             LogUtils.i(TAG, "==========");
         }
