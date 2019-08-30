@@ -167,5 +167,6 @@
     <orderEntry type="module" module-name="fragmentation_swipeback" />
     <orderEntry type="module" module-name="eventbus_activity_scope" />
     <orderEntry type="module" module-name="BaseRecyclerViewAdapterHelper" />
+    <orderEntry type="module" module-name="banner" />
   </component>
 </module>

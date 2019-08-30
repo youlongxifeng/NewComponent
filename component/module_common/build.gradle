@@ -81,5 +81,7 @@ dependencies {
     api project(path: ':modules:eventbus_activity_scope')
     //万能适配器
     api project(path: ':modules:BaseRecyclerViewAdapterHelper')
+    //
+    api project(path:':modules:banner')
 
 }

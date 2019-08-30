@@ -8,5 +8,6 @@ include ':app',
         'modules:fragmentation_swipeback',
         'modules:fragmentation',
         'modules:eventbus_activity_scope',
-        'modules:BaseRecyclerViewAdapterHelper'
+        'modules:BaseRecyclerViewAdapterHelper',
+        'modules:banner'
 rootProject.name='NewComponent'
