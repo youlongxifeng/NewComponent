@@ -63,8 +63,8 @@ dependencies {
     api 'com.squareup.okio:okio:2.4.0'
 
     //图片加载
-   // api 'com.github.bumptech.glide:glide:4.9.0'
-   // annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+     api 'com.github.bumptech.glide:glide:4.9.0'
+     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 
     //引入ButterKnife View注入框架
     implementation "com.jakewharton:butterknife:10.1.0"
@@ -74,6 +74,10 @@ dependencies {
     implementation 'com.orhanobut:logger:2.2.0'
 
 
+    //Glide
+    api 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+
 
     api project(path: ':modules:fragmentation_core')
     api project(path: ':modules:fragmentation_swipeback')
@@ -81,7 +85,7 @@ dependencies {
     api project(path: ':modules:eventbus_activity_scope')
     //万能适配器
     api project(path: ':modules:BaseRecyclerViewAdapterHelper')
-    //
-    api project(path:':modules:banner')
+    //banner
+     api project(path:':modules:banner')
 
 }

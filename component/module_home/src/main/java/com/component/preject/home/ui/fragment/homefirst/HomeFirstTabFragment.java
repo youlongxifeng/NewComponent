@@ -3,6 +3,7 @@ package com.component.preject.home.ui.fragment.homefirst;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +21,10 @@ import com.component.preject.home.bean.HomeArticleListData;
 import com.component.preject.home.bean.HomePageBannerModel;
 import com.component.preject.home.constant.HomeConstants;
 import com.component.preject.home.ui.fragment.homefirst.adapter.HomePageAdapter;
+import com.youth.banner.Banner;
+import com.youth.banner.BannerConfig;
+import com.youth.banner.Transformer;
+import com.youth.banner.listener.OnBannerListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +51,7 @@ public class HomeFirstTabFragment extends BaseMvpFragment<HomeFirstTabPresenter>
     RecyclerView mRecyclerView;
     @BindView(R2.id.swipe_recovery_box)
     SwipeRefreshLayout mSwipeRefreshLayout;
-
+    Banner mBanner;
     /**
      * 下一页请求页数
      */
@@ -91,13 +96,62 @@ public class HomeFirstTabFragment extends BaseMvpFragment<HomeFirstTabPresenter>
     @Override
     protected void initEventAndData() {
         refresh();
-        mPresenter.getHomePageBannerData();
-    }
 
+    }
+    private void mHeaderGroup1() {
+        //add head banner
+        LinearLayout mHeaderGroup = (LinearLayout) getLayoutInflater().inflate(R.layout.home_head_banner_item, null);
+        mBanner = mHeaderGroup.findViewById(R.id.head_banner);
+        mHeaderGroup.removeView(mBanner);
+        mAdapter.setHeaderView(mBanner, 1);
+    }
+    private List<String> mBannerTitleList;
+    private List<String> mBannerUrlList;
+    private List<Integer> bannerIdList;
+    private void showBannerData(List<HomePageBannerModel> bannerDataList) {
+        mBannerTitleList = new ArrayList<>();
+        List<String> bannerImageList = new ArrayList<>();
+        bannerIdList = new ArrayList<>();
+        mBannerUrlList = new ArrayList<>();
+        for (HomePageBannerModel bannerData : bannerDataList) {
+            mBannerTitleList.add(bannerData.getTitle());
+            bannerImageList.add(bannerData.getImagePath());
+            mBannerUrlList.add(bannerData.getUrl());
+            bannerIdList.add(bannerData.getId());
+        }
+        //设置banner样式
+        mBanner.setBannerStyle(BannerConfig.NUM_INDICATOR_TITLE);
+        //设置图片加载器
+        mBanner.setImageLoader(new BannerGlideImageLoader());
+        //设置图片集合
+        mBanner.setImages(bannerImageList);
+        //设置banner动画效果
+        mBanner.setBannerAnimation(Transformer.Accordion);
+        //设置标题集合（当banner样式有显示title时）
+        mBanner.setBannerTitles(mBannerTitleList);
+        //设置自动轮播，默认为true
+        mBanner.isAutoPlay(true);
+        //设置轮播时间
+        mBanner.setDelayTime(2500);
+        //设置指示器位置（当banner模式中有指示器时）
+        mBanner.setIndicatorGravity(BannerConfig.CENTER);
+        mBanner.setOnBannerListener(new OnBannerListener() {
+                                        @Override
+                                        public void OnBannerClick(int position) {
+
+                                        }
+                                    }
+
+        );
+        //banner设置方法全部调用完毕时最后调用
+        mBanner.start();
+    }
 
     @Override
     public void showHomePageBanner(  List<HomePageBannerModel> bannerModelList) {
-
+        mBannerModelList.clear();
+        mBannerModelList.addAll(bannerModelList);
+        showBannerData(mBannerModelList);
     }
 
     @Override
@@ -176,6 +230,7 @@ public class HomeFirstTabFragment extends BaseMvpFragment<HomeFirstTabPresenter>
                 //点击子控件
             }
         });
+        mHeaderGroup1();
     }
 
     /**
