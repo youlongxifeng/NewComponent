@@ -1,10 +1,15 @@
 package com.component.preject.home.ui.fragment.navigation;
 
+import android.os.Bundle;
 import android.view.View;
+
+import androidx.fragment.app.Fragment;
 
 import com.component.preject.common.base.fragment.BaseMvpFragment;
 import com.component.preject.common.base.mvp.BasePresenter;
 import com.component.preject.home.R;
+import com.component.preject.home.constant.HomeConstants;
+import com.component.preject.home.ui.fragment.navigation.adapter.NaviAdapter;
 
 /**
  * @ProjectName: NewComponent
@@ -19,6 +24,16 @@ import com.component.preject.home.R;
  * @description: （java类作用描述）
  */
 public class NavigationFragment extends BaseMvpFragment {
+
+
+    private NaviAdapter mAdapter;
+    public static Fragment newInstance(String tabName) {
+        Bundle args = new Bundle();
+        args.putString(HomeConstants.TAG_TAB_NAME,tabName);
+        NavigationFragment fragment = new NavigationFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
     @Override
     protected BasePresenter createPresenter() {
         return null;

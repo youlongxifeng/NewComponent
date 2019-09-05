@@ -8,4 +8,8 @@
     <color name="color_dcdcdc" >#dcdcdc</color>
     <color name="color_00bcd4" >#00BCD4</color>
     <color name="font_hint" >#9B9999</color>
+    <color name="text_black">#333333</color>
+    <!--点击水波纹效果的颜色-->
+    <color name="ripple_dark">#11000000</color>
+    <color name="ripple_light">#11ffffff</color>
 </resources>

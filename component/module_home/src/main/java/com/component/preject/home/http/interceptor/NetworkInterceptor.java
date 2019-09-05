@@ -54,10 +54,7 @@ public class NetworkInterceptor implements Interceptor {
             LogUtils.i(TAG, "GET 请求方式  url=" + requestBuilder.url());
         }
         Request request = builder.build();
-        LogUtils.i(TAG, "builder===" + request.headers().size() + "  ==" + request.headers().toString());
         Response response = chain.proceed(request);
-
-        LogUtils.i(TAG, "response.body()===" + response.toString());
         return response;
     }
 }

@@ -3,6 +3,7 @@ package com.component.preject.home.http.api;
 import com.component.preject.home.bean.HomeArticleData;
 import com.component.preject.home.bean.HomeArticleListData;
 import com.component.preject.home.bean.HomePageBannerModel;
+import com.component.preject.home.bean.KnowledgeBean;
 import com.component.preject.home.bean.KnowledgeHierarchyData;
 import com.component.preject.home.bean.ProjectClassifyData;
 import com.component.preject.home.bean.ResponseBean;
@@ -79,4 +80,10 @@ public interface ApiService {
      */
     @GET("/article/list/{pageNum}/json")
     Observable<ResponseBean<HomeArticleListData>>getHomeArticleListData(@Path("pageNum")int pageNum );
+
+    /**
+     * 体系数据
+     */
+    @GET("tree/json")
+    Observable<ResponseBean<List<KnowledgeBean>>> getKnowledgeList();
 }

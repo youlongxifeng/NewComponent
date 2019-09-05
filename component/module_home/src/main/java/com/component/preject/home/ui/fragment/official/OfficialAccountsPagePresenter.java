@@ -7,8 +7,6 @@ import com.component.preject.home.rx.RxSchedulers;
 
 import java.util.List;
 
-import io.reactivex.observers.DisposableObserver;
-
 /**
  * @ProjectName: NewComponent
  * @Package: com.component.preject.home.ui.fragment.official
@@ -28,7 +26,7 @@ public class OfficialAccountsPagePresenter extends OfficialAccountsPageContract.
 
     @Override
     void getOfficialAccountsListData() {
-        DisposableObserver<List<KnowledgeHierarchyData>> disposableObserver = getOfficialAccountsPageObserver();
+        HttpDisposableObserver<List<KnowledgeHierarchyData>> disposableObserver = getOfficialAccountsPageObserver();
         mModel.getWxArticle()
                 .compose(RxSchedulers.combine())
                 .subscribe(disposableObserver);

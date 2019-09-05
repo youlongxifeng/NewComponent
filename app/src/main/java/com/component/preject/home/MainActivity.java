@@ -90,7 +90,7 @@ public class MainActivity extends BaseActivity implements
     }
     Fragment HomePageFragment = ARouterUtils.getFragment(Constants.ROUTER_HOME);
     Fragment OfficialAccountsPageFragment = ARouterUtils.getFragment(Constants.ROUTER_OFFICIALACCOUNTSPAGE);
-   // Fragment KnowledgeHierarchyPageFragment=ARouterUtils.getFragment(Constants.ROUTER_KNOWLEDGEHIERARCHYPAGE);
+    Fragment KnowledgeHierarchyPageFragment=ARouterUtils.getFragment(Constants.ROUTER_KNOWLEDGEHIERARCHYPAGE);
     Fragment ProjectFragment=ARouterUtils.getFragment(Constants.ROUTER_PROJECTFRAGMENT);
     Fragment fragment = ARouterUtils.getFragment(Constants.ROUTER_HOME);
     private void initFragment() {

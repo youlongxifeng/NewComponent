@@ -96,7 +96,7 @@ public class HomeFirstTabFragment extends BaseMvpFragment<HomeFirstTabPresenter>
     @Override
     protected void initEventAndData() {
         refresh();
-
+        showBannerData(mBannerModelList);
     }
     private void mHeaderGroup1() {
         //add head banner
@@ -147,11 +147,18 @@ public class HomeFirstTabFragment extends BaseMvpFragment<HomeFirstTabPresenter>
         mBanner.start();
     }
 
+    boolean oneCount=true;
     @Override
     public void showHomePageBanner(  List<HomePageBannerModel> bannerModelList) {
         mBannerModelList.clear();
         mBannerModelList.addAll(bannerModelList);
-        showBannerData(mBannerModelList);
+        if(oneCount){
+            showBannerData(mBannerModelList);
+            oneCount=false;
+        }else {
+            mBanner.update(mBannerModelList);
+        }
+
     }
 
     @Override

@@ -5,4 +5,6 @@
     <string name="latest_project">最新项目</string>
     <string name="new_tag">新</string>
     <string name="top_tag">置顶</string>
+    <string name="hierarchy">体系</string>
+    <string name="navigation">导航</string>
 </resources>
