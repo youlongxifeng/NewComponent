@@ -1,6 +1,6 @@
 package com.component.preject.home.ui.fragment.nowledge;
 
-import com.component.preject.home.bean.KnowledgeBean;
+import com.component.preject.home.bean.KnowledgeHierarchyData;
 import com.component.preject.home.bean.ResponseBean;
 import com.component.preject.home.http.ApiEngine;
 
@@ -22,7 +22,7 @@ import io.reactivex.Observable;
  */
 public class KnowledgeModel implements KnowledgeContract.Model {
     @Override
-    public Observable<ResponseBean<List<KnowledgeBean>>> getKnowledgeList() {
+    public Observable<ResponseBean<List<KnowledgeHierarchyData>>> getKnowledgeList() {
         return ApiEngine.getInstance().getApiService().getKnowledgeList();
     }
 }

@@ -14,11 +14,14 @@
             <option value="$PROJECT_DIR$/component/module_home" />
             <option value="$PROJECT_DIR$/modules" />
             <option value="$PROJECT_DIR$/modules/BaseRecyclerViewAdapterHelper" />
+            <option value="$PROJECT_DIR$/modules/badgeviewlib" />
             <option value="$PROJECT_DIR$/modules/banner" />
             <option value="$PROJECT_DIR$/modules/eventbus_activity_scope" />
+            <option value="$PROJECT_DIR$/modules/flexibleflowlayout" />
             <option value="$PROJECT_DIR$/modules/fragmentation" />
             <option value="$PROJECT_DIR$/modules/fragmentation_core" />
             <option value="$PROJECT_DIR$/modules/fragmentation_swipeback" />
+            <option value="$PROJECT_DIR$/modules/verticaltablayout" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

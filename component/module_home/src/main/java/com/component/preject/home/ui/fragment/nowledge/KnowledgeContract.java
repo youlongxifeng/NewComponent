@@ -3,7 +3,7 @@ package com.component.preject.home.ui.fragment.nowledge;
 import com.component.preject.common.base.mvp.BaseModel;
 import com.component.preject.common.base.mvp.BasePresenter;
 import com.component.preject.common.base.mvp.BaseView;
-import com.component.preject.home.bean.KnowledgeBean;
+import com.component.preject.home.bean.KnowledgeHierarchyData;
 import com.component.preject.home.bean.ResponseBean;
 
 import java.util.List;
@@ -25,7 +25,7 @@ import io.reactivex.Observable;
 public interface KnowledgeContract {
     interface View extends BaseView {
 
-        void getKnowledgeListSuccess(  List<KnowledgeBean> data);
+        void getKnowledgeListSuccess(  List<KnowledgeHierarchyData> data);
 
         void getKnowledgeListFail(  String msg);
 
@@ -39,7 +39,7 @@ public interface KnowledgeContract {
          * @description 描述一下方法的作用
          * @author: xiezhenggen
          */
-        Observable<ResponseBean<List<KnowledgeBean>>> getKnowledgeList();
+        Observable<ResponseBean<List<KnowledgeHierarchyData>>> getKnowledgeList();
 
 
     }

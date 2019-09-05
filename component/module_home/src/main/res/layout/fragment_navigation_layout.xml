@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/inflate_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_white"
+    android:orientation="horizontal">
+    <q.rorbin.verticaltablayout.VerticalTabLayout
+        android:id="@+id/vertical_tab"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="match_parent"
+        android:background="@color/viewBackground"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        app:indicator_corners="20dp"
+        app:indicator_gravity="fill"
+        app:tab_margin="10dp"
+        android:visibility="visible"
+        app:tab_mode="scrollable"
+        >
+    </q.rorbin.verticaltablayout.VerticalTabLayout>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_recovery_box"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rc_recovery_box"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </LinearLayout>

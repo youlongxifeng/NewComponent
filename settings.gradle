@@ -9,5 +9,8 @@ include ':app',
         'modules:fragmentation',
         'modules:eventbus_activity_scope',
         'modules:BaseRecyclerViewAdapterHelper',
-        'modules:banner'
+        'modules:banner',
+        'modules:verticaltablayout',
+        'modules:badgeviewlib',
+        'modules:flexibleflowlayout'
 rootProject.name='NewComponent'

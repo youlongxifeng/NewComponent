@@ -172,5 +172,8 @@
     <orderEntry type="module" module-name="eventbus_activity_scope" />
     <orderEntry type="module" module-name="BaseRecyclerViewAdapterHelper" />
     <orderEntry type="module" module-name="banner" />
+    <orderEntry type="module" module-name="verticaltablayout" />
+    <orderEntry type="module" module-name="flexibleflowlayout" />
+    <orderEntry type="module" module-name="badgeviewlib" />
   </component>
 </module>

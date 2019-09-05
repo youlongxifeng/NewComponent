@@ -3,8 +3,8 @@ package com.component.preject.home.http.api;
 import com.component.preject.home.bean.HomeArticleData;
 import com.component.preject.home.bean.HomeArticleListData;
 import com.component.preject.home.bean.HomePageBannerModel;
-import com.component.preject.home.bean.KnowledgeBean;
 import com.component.preject.home.bean.KnowledgeHierarchyData;
+import com.component.preject.home.bean.NavigationListData;
 import com.component.preject.home.bean.ProjectClassifyData;
 import com.component.preject.home.bean.ResponseBean;
 
@@ -85,5 +85,16 @@ public interface ApiService {
      * 体系数据
      */
     @GET("tree/json")
-    Observable<ResponseBean<List<KnowledgeBean>>> getKnowledgeList();
+    Observable<ResponseBean<List<KnowledgeHierarchyData>>> getKnowledgeList();
+
+    /**
+     * 导航数据
+     * @return
+     */
+    /**
+     * 获取导航数据
+     * @return
+     */
+    @GET("/navi/json")
+    Observable<ResponseBean<List<NavigationListData>>>getNavigationListData();
 }

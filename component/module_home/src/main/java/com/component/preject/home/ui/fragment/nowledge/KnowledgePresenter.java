@@ -1,6 +1,6 @@
 package com.component.preject.home.ui.fragment.nowledge;
 
-import com.component.preject.home.bean.KnowledgeBean;
+import com.component.preject.home.bean.KnowledgeHierarchyData;
 import com.component.preject.home.rx.ApiException;
 import com.component.preject.home.rx.HttpDisposableObserver;
 import com.component.preject.home.rx.RxSchedulers;
@@ -31,15 +31,15 @@ public class KnowledgePresenter extends KnowledgeContract.Presenter {
 
     @Override
     void getKnowledgeList() {
-        HttpDisposableObserver<List<KnowledgeBean>> disposableObserver = getKnowledgeBeanObserver();
+        HttpDisposableObserver<List<KnowledgeHierarchyData>> disposableObserver = getKnowledgeBeanObserver();
         mModel.getKnowledgeList()
                 .compose(RxSchedulers.combine())
                 .subscribe(disposableObserver);
         addSubscribe(disposableObserver);
     }
 
-    private HttpDisposableObserver<List<KnowledgeBean>> getKnowledgeBeanObserver() {
-        return new HttpDisposableObserver<List<KnowledgeBean>>() {
+    private HttpDisposableObserver<List<KnowledgeHierarchyData>> getKnowledgeBeanObserver() {
+        return new HttpDisposableObserver<List<KnowledgeHierarchyData>>() {
             @Override
             public void onError(ApiException e) {
                 if (mView != null) {
@@ -48,7 +48,7 @@ public class KnowledgePresenter extends KnowledgeContract.Presenter {
             }
 
             @Override
-            public void onNext(List<KnowledgeBean> knowledgeBeans) {
+            public void onNext(List<KnowledgeHierarchyData> knowledgeBeans) {
                 if (mView != null) {
                     mView.getKnowledgeListSuccess(knowledgeBeans);
                 }

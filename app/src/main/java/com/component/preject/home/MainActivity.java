@@ -100,7 +100,7 @@ public class MainActivity extends BaseActivity implements
         mNavHelper = new NavHelper<String>(this, R.id.page_fragment_container, getSupportFragmentManager(), this)
                 .add(R.id.tab_main, new NavHelper.Tab<String>(HomePageFragment.getClass(), getString(R.string.page_home), Constants.TAG_HOME))
                 .add(R.id.nav_home, new NavHelper.Tab<String>(HomePageFragment.getClass(), getString(R.string.page_home), Constants.TAG_HOME))
-                .add(R.id.tab_knowledge_hierarchy, new NavHelper.Tab<String>(HomePageFragment.getClass(), getString(R.string.knowledge_hierarchy), Constants.TAG_KNOWLEGER))
+                .add(R.id.tab_knowledge_hierarchy, new NavHelper.Tab<String>(KnowledgeHierarchyPageFragment.getClass(), getString(R.string.knowledge_hierarchy), Constants.TAG_KNOWLEGER))
                 .add(R.id.tab_official_accounts, new NavHelper.Tab<String>(OfficialAccountsPageFragment.getClass(), getString(R.string.official_accounts), Constants.TAG_OFFICIAL))
                 .add(R.id.tab_navigation, new NavHelper.Tab<String>(ProjectFragment.class, getString(R.string.navigation), Constants.TAG_NAVIGATION))
                 .add(R.id.tab_project, new NavHelper.Tab<String>(ProjectFragment.getClass(), getString(R.string.project), Constants.TAG_PROJECT))

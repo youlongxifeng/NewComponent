@@ -5,18 +5,17 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.component.preject.common.base.fragment.BaseMvpFragment;
 import com.component.preject.common.utils.LogUtils;
-import com.component.preject.common.utils.ToastUtils;
 import com.component.preject.home.R;
 import com.component.preject.home.R2;
-import com.component.preject.home.bean.KnowledgeBean;
+import com.component.preject.home.bean.KnowledgeHierarchyData;
 import com.component.preject.home.constant.HomeConstants;
 import com.component.preject.home.ui.fragment.nowledge.adapter.KnowledgeAdapter;
 
@@ -50,8 +49,8 @@ public class KnowledgeFragment extends BaseMvpFragment<KnowledgePresenter> imple
     private int mNextRequestPage = 1;
 
     private KnowledgeAdapter mAdapter;
-    List<KnowledgeBean> datas = new ArrayList<>();
-
+    List<KnowledgeHierarchyData> datas = new ArrayList<>();
+    StaggeredGridLayoutManager layoutManager;
     public static Fragment newInstance(String tabName) {
         Bundle args = new Bundle();
         args.putString(HomeConstants.TAG_TAB_NAME, tabName);
@@ -105,7 +104,8 @@ public class KnowledgeFragment extends BaseMvpFragment<KnowledgePresenter> imple
      * 初始化RecyclerView
      */
     private void initRecyclerView() {
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.addOnItemTouchListener(new OnItemClickListener() {
             @Override
             public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
@@ -161,7 +161,7 @@ public class KnowledgeFragment extends BaseMvpFragment<KnowledgePresenter> imple
      * @param isRefresh
      * @param data
      */
-    private void setData(boolean isRefresh, List<KnowledgeBean> data) {
+    private void setData(boolean isRefresh, List<KnowledgeHierarchyData> data) {
         final int size = data == null ? 0 : data.size();
         if (isRefresh) {
             datas.clear();
@@ -174,7 +174,8 @@ public class KnowledgeFragment extends BaseMvpFragment<KnowledgePresenter> imple
             }
         }
         LogUtils.i(TAG, "setData===" + (!isRefresh && (size < HomeConstants.PAGE_SIZE)));
-        if ((size < HomeConstants.PAGE_SIZE)) {
+        mAdapter.loadMoreEnd(isRefresh);
+    /*    if ((size < HomeConstants.PAGE_SIZE)) {
             //第一页如果不够一页就不显示没有更多数据布局
             mAdapter.loadMoreEnd(isRefresh);
             if (!isRefresh) {
@@ -182,11 +183,12 @@ public class KnowledgeFragment extends BaseMvpFragment<KnowledgePresenter> imple
             }
         } else {
             mAdapter.loadMoreComplete();
-        }
+        }*/
+
     }
 
     @Override
-    public void getKnowledgeListSuccess(List<KnowledgeBean> data) {
+    public void getKnowledgeListSuccess(List<KnowledgeHierarchyData> data) {
         setData(true, data);
     }
 
