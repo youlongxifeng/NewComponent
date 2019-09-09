@@ -41,6 +41,10 @@ public interface Constants {
      * 项目列表 ProjectFragment
      */
     String ROUTER_PROJECTFRAGMENT= "/home/ProjectFragment";
+    /**
+     * 导航
+     */
+    String ROUTER_KNOWLEDGEFRAGMENT= "/home/KnowledgeFragment";
 
 
 

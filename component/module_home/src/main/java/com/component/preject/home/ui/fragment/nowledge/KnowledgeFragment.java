@@ -9,9 +9,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.component.preject.common.base.fragment.BaseMvpFragment;
+import com.component.preject.common.constants.Constants;
 import com.component.preject.common.utils.LogUtils;
 import com.component.preject.home.R;
 import com.component.preject.home.R2;
@@ -36,6 +38,7 @@ import butterknife.BindView;
  * @Version: 1.0
  * @description: （体系）
  */
+@Route(path = Constants.ROUTER_KNOWLEDGEFRAGMENT)
 public class KnowledgeFragment extends BaseMvpFragment<KnowledgePresenter> implements KnowledgeContract.View {
     private final static String TAG = KnowledgeFragment.class.getSimpleName();
 

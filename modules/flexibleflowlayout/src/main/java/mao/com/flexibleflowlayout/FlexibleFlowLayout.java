@@ -199,6 +199,7 @@ public class FlexibleFlowLayout extends ViewGroup {
     //add view 加载
     @Override
     protected LayoutParams generateLayoutParams(LayoutParams p) {
+
         return new MarginLayoutParams(p);
     }
 

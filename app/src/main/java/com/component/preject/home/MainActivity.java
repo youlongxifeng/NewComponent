@@ -91,6 +91,7 @@ public class MainActivity extends BaseActivity implements
     Fragment HomePageFragment = ARouterUtils.getFragment(Constants.ROUTER_HOME);
     Fragment OfficialAccountsPageFragment = ARouterUtils.getFragment(Constants.ROUTER_OFFICIALACCOUNTSPAGE);
     Fragment KnowledgeHierarchyPageFragment=ARouterUtils.getFragment(Constants.ROUTER_KNOWLEDGEHIERARCHYPAGE);
+    Fragment KnowledgeFragment=ARouterUtils.getFragment(Constants.ROUTER_KNOWLEDGEFRAGMENT);
     Fragment ProjectFragment=ARouterUtils.getFragment(Constants.ROUTER_PROJECTFRAGMENT);
     Fragment fragment = ARouterUtils.getFragment(Constants.ROUTER_HOME);
     private void initFragment() {
@@ -102,7 +103,7 @@ public class MainActivity extends BaseActivity implements
                 .add(R.id.nav_home, new NavHelper.Tab<String>(HomePageFragment.getClass(), getString(R.string.page_home), Constants.TAG_HOME))
                 .add(R.id.tab_knowledge_hierarchy, new NavHelper.Tab<String>(KnowledgeHierarchyPageFragment.getClass(), getString(R.string.knowledge_hierarchy), Constants.TAG_KNOWLEGER))
                 .add(R.id.tab_official_accounts, new NavHelper.Tab<String>(OfficialAccountsPageFragment.getClass(), getString(R.string.official_accounts), Constants.TAG_OFFICIAL))
-                .add(R.id.tab_navigation, new NavHelper.Tab<String>(ProjectFragment.class, getString(R.string.navigation), Constants.TAG_NAVIGATION))
+                .add(R.id.tab_navigation, new NavHelper.Tab<String>(KnowledgeFragment.getClass(), getString(R.string.navigation), Constants.TAG_NAVIGATION))
                 .add(R.id.tab_project, new NavHelper.Tab<String>(ProjectFragment.getClass(), getString(R.string.project), Constants.TAG_PROJECT))
                 .add(R.id.collect_page, new NavHelper.Tab<String>(ProjectFragment.class, getString(R.string.nav_collect), Constants.TAG_COLLECTION));
 
@@ -284,6 +285,8 @@ public class MainActivity extends BaseActivity implements
                         Log.d("ARouter", "被拦截了");
                     }
                 });
+                break;
+            case R.id.iv_search:
                 break;
             default:
                 break;
